@@ -1,12 +1,14 @@
 //import logo from './logo.svg';
 import './App.css';
 
-
+import Head from"./components/head";
+import Body from "./components/body";
 
 function App() {
   return (
     <div className="App" className="bg-slate-300" >
-      <p>react app</p>
+      <Head/>
+      <Body/>
     </div>
   );
 
