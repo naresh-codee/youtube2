@@ -4,8 +4,8 @@ import Maincontainer from "./maincontainer";
 
 const Body = () =>{
     return(
-        <div>
-        <div>Body</div>
+        <div className="flex">
+        {/* <div>Body</div> */}
         <Sidebar/>
         <Maincontainer/>
         </div>
