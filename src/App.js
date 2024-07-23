@@ -6,7 +6,7 @@ import Body from "./components/body";
 
 function App() {
   return (
-    <div className="App" className="bg-slate-300" >
+    <div className="App"  >
       <Head/>
       <Body/>
     </div>
