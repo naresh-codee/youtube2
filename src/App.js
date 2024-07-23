@@ -1,22 +1,16 @@
 //import logo from './logo.svg';
 import './App.css';
-import Head from "./components/head";
-import Body from "./components/body"
-import Sidebar from './components/sidebar';
-import Maincontainer from "./components/maincontainer"
+
 
 
 function App() {
   return (
-    <div className="App" >
-      <Head/>
-      <Body/>
-      <Sidebar/>
-      <Maincontainer/>
+    <div className="App" className="bg-slate-300" >
+      <p>react app</p>
     </div>
   );
 
-  {
+  
    /**
     * head
     * body
@@ -27,7 +21,7 @@ function App() {
           *video container
     *       ->video card
     *  */ 
-  }
+  
 }
 
 export default App;
