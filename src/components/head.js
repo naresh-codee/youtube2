@@ -37,8 +37,8 @@ const Head = () => {
 
             <div className="flex">
                 <img className="col-span-1 h-12 w-13  p-1 cursor-pointer" alt="user_logo" src={user_logo}/>
-                {/* <a href="/signin">signin</a> */}
-                <Link to="signin">sign in</Link>
+                <a href="/signin">signin</a>
+                {/* <Link to="signin">sign in</Link> */}
             </div>
         </div>
     )
