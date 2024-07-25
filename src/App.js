@@ -33,14 +33,7 @@ const AppRouting = createBrowserRouter([
   {
     path:"/signin",
     element:<SignIn/>,
-    children:[
-      {
-
-      },
-      {
-
-      }
-    ]
+    
   },
   {
     Path:"/contact",
