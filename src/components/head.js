@@ -7,6 +7,8 @@ import user_logo from "../constants/images/userlogo.jpg"
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appslice";
 
+import {Link} from "react-router-dom";
+
 
 
 const Head = () => {
@@ -33,8 +35,10 @@ const Head = () => {
             </div>
 
 
-            <div>
+            <div className="flex">
                 <img className="col-span-1 h-12 w-13  p-1 cursor-pointer" alt="user_logo" src={user_logo}/>
+                <a href="/signin">signin</a>
+                {/* <Link to="signin">sign in</Link> */}
             </div>
         </div>
     )

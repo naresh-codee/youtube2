@@ -1,3 +1,131 @@
+# ROUTING:
+STEP1: install react-router-dom
+STEP2: create the router configuration
+STEP3: Provide the router configuration
+STEP4: add the LINK keyword properly
+
+
+creating and providing  router configutation stages:
+
+stage (1)
+const AppLayout = createBrowserRouter([
+    {
+        path:"/",
+        element:<Homepage>
+    },
+
+    {
+        path:"/aboutus",
+        element:<AboutUs>
+    },
+    {
+        path:"/signin",
+        element:<Signinpage>
+    }
+])
+
+--------- corresponding  router provider in app.js file ---------
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div className="App"  >
+        <RouterProvider router={AppRouting}/>
+      </div>
+    </Provider>
+  );
+
+
+
+
+STAGE (2): you want header on all pages , but just want to change tha body part alone
+
+const AppLayout = createBrowserRouter([
+    {
+        path:"/",
+        element:<Body>,   // this body component  has 2 childrens "sidebar and maincontainer or watchpage" , because we                    we are going to keep sidebar always
+
+        children:[                // this children will go to whereever this "outlet" keyword is present 
+            {
+                path:"/"
+                element:<MainContainer>  // if it normal maincontainer will be rendered 
+
+            },
+            {
+                path:"/watch"
+                element:<WatchPage>   // if the route is /watch , this watch component will be rendered
+
+            }
+        ]
+
+    },
+
+    {
+        path:"/aboutus",
+        element:<AboutUs>,
+        children:[
+            {
+                ... somethings ...
+            }
+        ]
+    },
+    {
+        path:"/signin",
+        element:<Signinpage>,
+        children:[
+            {
+                ... somethings ...
+            }
+        ]
+    }
+])
+
+
+
+--------- corresponding  router provider in app.js file ---------
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div className="App"  >
+        <head/>                 // note this changee......
+        
+        <RouterProvider router={AppRouting}/>
+      </div>
+    </Provider>
+  );
+
+
+ ... inorder to use the children routing you need to use "Outlet from react-router-dom" in the body component file ......
+
+  const Body = () =>{
+    return(
+        <div>
+       
+        <div><Sidebar/></div>
+
+        <Outlet>   /// this outlet will be either <MainContainer > or <WatchPage>
+        
+        </div>
+
+    )
+}
+
+
+-------------------------------------
+
+after all this you need give the "Link keyword from react router dom" properly to the files needed
+
+example -->    <Link to="/signin" >signin page</Link>
+
+
+
+
+
+
+
+
+
+
 
 # problems and solutions:
 1) 'react-scripts' is not recognized as an internal or external command,
