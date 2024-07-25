@@ -15,15 +15,16 @@ const Videocontainer = () =>{
         const data = await fetch(youtube_api);
         const jsonValue = await data.json();
         console.log(jsonValue.items);
-        setVideo(jsonValue.items);
-        
+        setVideo(jsonValue.items)
 
     }
 
-    return(
-        <div>
+    if(video.length===0) return null;
 
-            <Videocard/>
+    return(
+        <div className="mx-1">
+             <Videocard data={video[1]}/>
+   
         </div>
     )
 }
