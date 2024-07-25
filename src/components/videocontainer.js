@@ -22,8 +22,13 @@ const Videocontainer = () =>{
     if(video.length===0) return null;
 
     return(
-        <div className="mx-1">
-             <Videocard data={video[1]}/>
+        <div className="mx-1 flex flex-wrap">
+            {video.map((v)=>(
+                <Videocard data={v} key={v.id}/>
+            )
+            )}
+
+             {/*Videocard data={video[1]}/> */}
    
         </div>
     )

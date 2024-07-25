@@ -4,7 +4,7 @@ const Videocard = ({data}) =>{
     const {snippet,statistics}=data
     const {thumbnails,channelTitle,title}=snippet;
     return(
-        <div className=" w-[350px] h-[300px] rounded-lg bg-slate-100 p-1">
+        <div className=" w-[350px] h-[300px] rounded-lg bg-slate-100 p-1 mx-2 my-1 shadow-lg">
             <img alt="thumbanil_image" src={thumbnails.medium.url} className="my-1 mx-2 rounded-lg" />
             <ul className="mx-1.5 px-1">
                 <ol className="font-bold">{title}</ol>
