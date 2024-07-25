@@ -4,10 +4,11 @@ import Maincontainer from "./maincontainer";
 
 const Body = () =>{
     return(
-        <div className="flex">
+        <div className="flex grid-flow-col">
         {/* <div>Body</div> */}
-        <Sidebar/>
-        <Maincontainer/>
+        <div className="col-span-2"><Sidebar/></div>
+        <div className="col-span-10"><Maincontainer/></div>
+        
         </div>
 
     )
