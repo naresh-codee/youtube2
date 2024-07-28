@@ -13,6 +13,8 @@ import { useState , useEffect } from "react";
 import {YOUTUBE_SEARCH_SUGGESTIONS_API} from "../constants/urls";
 import { searchCache } from "../utils/searchslice";
 
+import { useSelector } from "react-redux";
+
 
 
 const Head = () => {
@@ -24,10 +26,33 @@ const Head = () => {
 
     const [searchQuery,setSearchQuery] = useState("")
     const [youtubeSuggestions,setYoutubeSuggestions]=useState([]);
+
+    const searchCache = useSelector((store) => store.search);
     
 
     useEffect(()=>{
+
+        // const timer =  setTimeout(()=>{
+
+        //     if(searchCache[searchQuery]){
+        //             setYoutubeSuggestions(searchCache[searchQuery]);
+        //     }
+        //     else{
+        //         getYoutubeSuggestions();
+        //     }
+
+        // },2000);
+
+        // return ()=>{
+        //     clearTimeout(timer);
+        // }
+
         getYoutubeSuggestions();
+
+
+        
+
+
     },[searchQuery]);
 
 
@@ -40,7 +65,7 @@ const Head = () => {
 
 
         // setting the suggestions into the redux store
-        
+
         dispatch(searchCache({
             // the thing we are dispatching has to like a key:value pair
 
