@@ -9,6 +9,8 @@ import { toggleMenu } from "../utils/appslice";
 
 import {Link} from "react-router-dom";
 
+import { useState } from "react";
+
 
 
 const Head = () => {
@@ -17,6 +19,8 @@ const Head = () => {
     const hamburgerMenuToggle= () =>{
         dispatch(toggleMenu());
     }
+
+    const [searchQuery,setSearchQuery] = useState("")
     
 
     return(
@@ -30,7 +34,10 @@ const Head = () => {
 
             <div className="col-span-10">
                 
-                <input className=" border border-black border-r-none rounded-full rounded-r-none py-2 px-2 w-1/2 bg-slate-300 text-black cursor-pointer " type="text" placeholder="Search" />
+                <input className=" border border-black border-r-none rounded-full rounded-r-none py-2 px-2 w-1/2 bg-slate-300 text-black cursor-pointer " type="text" placeholder="Search" value={searchQuery} onChange={(e)=> 
+                    setSearchQuery(e.target.value)
+                }/>
+
                 <button className="border border-black border-l-transparent rounded-r-full p-2 w-10 cursor-pointer">🔍</button>
             </div>
 
