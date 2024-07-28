@@ -9,6 +9,12 @@ import { toggleMenu } from "../utils/appslice";
 
 import {Link} from "react-router-dom";
 
+import { useState , useEffect } from "react";
+import {YOUTUBE_SEARCH_SUGGESTIONS_API} from "../constants/urls";
+import { searchCache } from "../utils/searchslice";
+
+import { useSelector } from "react-redux";
+
 
 
 const Head = () => {
@@ -16,6 +22,55 @@ const Head = () => {
     const dispatch = useDispatch();
     const hamburgerMenuToggle= () =>{
         dispatch(toggleMenu());
+    }
+
+    const [searchQuery,setSearchQuery] = useState("")
+    const [youtubeSuggestions,setYoutubeSuggestions]=useState([]);
+
+    const searchCache = useSelector((store) => store.search);
+    
+
+    useEffect(()=>{
+
+        // const timer =  setTimeout(()=>{
+
+        //     if(searchCache[searchQuery]){
+        //             setYoutubeSuggestions(searchCache[searchQuery]);
+        //     }
+        //     else{
+        //         getYoutubeSuggestions();
+        //     }
+
+        // },2000);
+
+        // return ()=>{
+        //     clearTimeout(timer);
+        // }
+
+        getYoutubeSuggestions();
+
+
+        
+
+
+    },[searchQuery]);
+
+
+    const getYoutubeSuggestions= async () =>{
+        const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_API+searchQuery);
+        const jsonValue = await data.json();
+
+        // console.log(jsonValue);
+        setYoutubeSuggestions(jsonValue[1]); //setting the youtube suggestions to the state variable
+
+
+        // setting the suggestions into the redux store
+
+        dispatch(searchCache({
+            // the thing we are dispatching has to like a key:value pair
+
+            [searchQuery]:jsonValue[1] // searchQuery --> key , jsonValue[1] --> value
+        }))
     }
     
 
@@ -30,7 +85,10 @@ const Head = () => {
 
             <div className="col-span-10">
                 
-                <input className=" border border-black border-r-none rounded-full rounded-r-none py-2 px-2 w-1/2 bg-slate-300 text-black cursor-pointer " type="text" placeholder="Search" />
+                <input className=" border border-black border-r-none rounded-full rounded-r-none py-2 px-2 w-1/2 bg-slate-300 text-black cursor-pointer " type="text" placeholder="Search" value={searchQuery} onChange={(e)=> 
+                    setSearchQuery(e.target.value)
+                }/>
+
                 <button className="border border-black border-l-transparent rounded-r-full p-2 w-10 cursor-pointer">🔍</button>
             </div>
 
