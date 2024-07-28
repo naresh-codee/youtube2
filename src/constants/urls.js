@@ -11,4 +11,7 @@ const your_API_key = "AIzaSyDlkwEY35cLsciYIrsTPNWweEheJT0YWXM";
 const youtube_api="https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="+your_API_key;
 
 
+export const YOUTUBE_SEARCH_SUGGESTIONS_API = "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+
 export default youtube_api;

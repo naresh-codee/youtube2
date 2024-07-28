@@ -9,7 +9,9 @@ import { toggleMenu } from "../utils/appslice";
 
 import {Link} from "react-router-dom";
 
-import { useState } from "react";
+import { useState , useEffect } from "react";
+import {YOUTUBE_SEARCH_SUGGESTIONS_API} from "../constants/urls";
+import { searchCache } from "../utils/searchslice";
 
 
 
@@ -21,6 +23,30 @@ const Head = () => {
     }
 
     const [searchQuery,setSearchQuery] = useState("")
+    const [youtubeSuggestions,setYoutubeSuggestions]=useState([]);
+    
+
+    useEffect(()=>{
+        getYoutubeSuggestions();
+    },[searchQuery]);
+
+
+    const getYoutubeSuggestions= async () =>{
+        const data = await fetch(YOUTUBE_SEARCH_SUGGESTIONS_API+searchQuery);
+        const jsonValue = await data.json();
+
+        // console.log(jsonValue);
+        setYoutubeSuggestions(jsonValue[1]); //setting the youtube suggestions to the state variable
+
+
+        // setting the suggestions into the redux store
+        
+        dispatch(searchCache({
+            // the thing we are dispatching has to like a key:value pair
+
+            [searchQuery]:jsonValue[1] // searchQuery --> key , jsonValue[1] --> value
+        }))
+    }
     
 
     return(
